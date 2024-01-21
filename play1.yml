@@ -1,0 +1,26 @@
+---
+- hosts: all
+  become: true
+  gather_facts: yes
+  ignore_errors: true
+  vars:
+    user_name: recav21
+    group_name: devops
+  vars_files:
+    - variables.yml
+  tasks:
+    - name: Check the time
+      command: dateabcdef
+#      when: ansible_distribution == "ryan.cavanaugh" or ansible_processor_nproc == 2
+    - name: create user
+      user:
+         name: "{{user_name}}"
+         comment: Ryan Cavanaugh
+    - name: create group
+      group:
+         name: "{{group_name}}"
+         state: present
+    - name: Install package
+      package:
+         name: "{{package_name}}"
+         state: present
