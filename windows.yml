@@ -1,0 +1,12 @@
+---
+- hosts: windows
+  tasks:
+    - name: Create a directory
+      win_file:
+        path: c:\ansible
+        state: directory
+    - name: Download Linux Kernel
+      win_get_url: 
+        url: https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.7.2.tar.xz
+        dest: c:\ansible
+        
